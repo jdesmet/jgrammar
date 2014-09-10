@@ -18,7 +18,7 @@ public class Main {
   public static void main(String[] args) {
     // TODO code application logic here
     Tokenizer<Expression> tokenizer = new Tokenizer<>();
-    tokenizer.ignore("[ ]*");
+    //tokenizer.ignore("[ ]*");
     tokenizer.add(new Rule<Expression,Expression>("EXPRESSION","({EXPRESSION})").create(Expression::new));
     tokenizer.add(
       new Rule<Expression,BinaryOperator>("EXPRESSION","{EXPRESSION:left}[[*/]:operator]{EXPRESSION}")
@@ -37,11 +37,11 @@ public class Main {
     tokenizer.add(new Rule("EXPRESSION","{ID:value}"));
     tokenizer.add(new Rule("EXPRESSION","{NUMBER:value}"));
     tokenizer.add(new Pattern("ID","[a-zA-Z]+"));
-    tokenizer.add(new Pattern("NUMBER","[0-9]+(.[0-9])?"));
+    tokenizer.add(new Pattern("NUMBER","[0-9]+"));
     
-    Expression expression = tokenizer.parse("1+2*3");
+    Expression expression = tokenizer.parse("1+2*3/value");
     
-    Object value = expression.evaluate();
+    //Object value = expression.evaluate();
 
     // [1+2*3]
     // NUM(value=1) [+] NUM(value=2) [*] NUM(value=3)

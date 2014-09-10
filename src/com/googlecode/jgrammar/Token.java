@@ -11,9 +11,29 @@ package com.googlecode.jgrammar;
  * @author jdesmet
  */
 class Token {
+  final private String string;
+  final private Pattern pattern;
+  
+  Token(String string) {
+    this.string = string;
+    this.pattern = null;
+  }
 
-  Token(String name) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  Token(Pattern p, String string) {
+    this.string = string;
+    this.pattern = p;
+  }
+
+  boolean isTokenized() {
+    return pattern != null;
+  }
+  
+  public String getString() {
+    return this.string;
+  }
+  
+  public Pattern getPattern() {
+    return this.pattern;
   }
   
 }

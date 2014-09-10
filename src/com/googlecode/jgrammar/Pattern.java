@@ -6,6 +6,8 @@
 
 package com.googlecode.jgrammar;
 
+import java.util.regex.Matcher;
+
 /**
  *
  * @author jdesmet
@@ -17,6 +19,14 @@ class Pattern {
   public Pattern(String id, String pattern) {
     this.id = id;
     this.pattern = java.util.regex.Pattern.compile(pattern);
+  }
+
+  Matcher matcher(String string) {
+    return pattern.matcher(string);
+  }
+
+  public String getId() {
+    return this.id;
   }
   
 }
