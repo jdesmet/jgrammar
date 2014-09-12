@@ -10,11 +10,11 @@ package com.googlecode.jgrammar.test;
  *
  * @author jdesmet
  */
-public class Expression {
-  public Expression() {}
-
-  Object evaluate() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+class Variable extends Expression {
+  private String name;
+  
+  public void setName(String name) {
+    this.name = name;
   }
-
+  
 }

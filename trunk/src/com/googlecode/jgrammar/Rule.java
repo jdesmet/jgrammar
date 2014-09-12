@@ -21,8 +21,11 @@ import java.util.function.Supplier;
 public class Rule<T,U extends T> {
   private Function<RuleContext<T>,U> constructor = null;
   private List<BiConsumer<U,RuleContext<T>>> fillers = Collections.emptyList();
+  final private String name;
   
-  public Rule(String name,String pattern) { }
+  public Rule(String name,String pattern) { 
+    this.name = name;
+  }
   
   public Rule<T,U> create(Function<RuleContext<T>,U> f) {
     if (constructor != null) throw new IllegalStateException("create can only be used once");
@@ -42,6 +45,10 @@ public class Rule<T,U extends T> {
 
   public Rule<T,U> fill(Consumer<U> c) {
     return fill((t,r)->c.accept(t));
+  }
+
+  String getName() {
+    return this.name;
   }
 
 }
