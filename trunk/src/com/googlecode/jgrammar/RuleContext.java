@@ -15,7 +15,7 @@ public class RuleContext<T> {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 
-  String getMatch(String name) {
+  public String getMatch(String name) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 }

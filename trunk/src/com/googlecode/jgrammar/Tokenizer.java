@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
  *
  * @author jdesmet
  */
-class Tokenizer<T> {
+public class Tokenizer<T> {
   private final List<Pattern> patterns;
   private final List<Pattern> ignores;
   private final List<Rule<T,? extends T>> rules;
@@ -31,17 +31,17 @@ class Tokenizer<T> {
     ignores.add(pattern);
   }
 
-  Rule<T,? extends T> add(Rule<T,? extends T> rule) {
+  public Rule<T,? extends T> add(Rule<T,? extends T> rule) {
     rules.add(rule);
     return rule;
   }
 
-  Pattern add(Pattern pattern) {
+  public Pattern add(Pattern pattern) {
     patterns.add(pattern);
     return pattern;
   }
 
-  T parse(String string) {
+  public T parse(String string) {
     //tokens = new LinkedList<>();
     //tokens.add(new Token(string));
     List<Token> tokens = tokenize(string);
