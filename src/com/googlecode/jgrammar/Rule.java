@@ -18,7 +18,7 @@ import java.util.function.Supplier;
  *
  * @author jdesmet
  */
-class Rule<T,U extends T> {
+public class Rule<T,U extends T> {
   private Function<RuleContext<T>,U> constructor = null;
   private List<BiConsumer<U,RuleContext<T>>> fillers = Collections.emptyList();
   

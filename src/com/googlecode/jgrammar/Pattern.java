@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
  *
  * @author jdesmet
  */
-class Pattern {
+public class Pattern {
   private final String id;
   private final java.util.regex.Pattern pattern;
 

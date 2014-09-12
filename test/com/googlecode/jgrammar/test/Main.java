@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 
-package com.googlecode.jgrammar;
+package com.googlecode.jgrammar.test;
+
+import com.googlecode.jgrammar.Pattern;
+import com.googlecode.jgrammar.Rule;
+import com.googlecode.jgrammar.Tokenizer;
 
 /**
  *

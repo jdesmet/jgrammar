@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.googlecode.jgrammar;
+package com.googlecode.jgrammar.test;
 
 /**
  *
