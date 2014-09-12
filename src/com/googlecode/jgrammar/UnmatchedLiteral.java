@@ -10,6 +10,15 @@ package com.googlecode.jgrammar;
  *
  * @author jdesmet
  */
-interface Token {
-  String getString();
+public class UnmatchedLiteral implements Token {
+  private final String string;
+  
+  UnmatchedLiteral(String string) {
+    this.string = string;
+  }
+
+  @Override
+  public String getString() {
+    return this.string;
+  }
 }

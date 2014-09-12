@@ -10,6 +10,6 @@ package com.googlecode.jgrammar;
  *
  * @author jdesmet
  */
-interface Token {
-  String getString();
+abstract class NamedToken implements Token {
+  abstract String getName();
 }

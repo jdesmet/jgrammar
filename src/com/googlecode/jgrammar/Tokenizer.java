@@ -7,9 +7,7 @@
 package com.googlecode.jgrammar;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.regex.Matcher;
 
 /**
@@ -31,21 +29,21 @@ public class Tokenizer<T> {
     ignores.add(pattern);
   }
 
-  public Rule<T,? extends T> add(Rule<T,? extends T> rule) {
+  public Tokenizer add(Rule<T,? extends T> rule) {
     rules.add(rule);
-    return rule;
+    return this;
   }
 
-  public Pattern add(Pattern pattern) {
+  public Tokenizer add(Pattern pattern) {
     patterns.add(pattern);
-    return pattern;
+    return this;
   }
 
   public T parse(String string) {
     //tokens = new LinkedList<>();
     //tokens.add(new Token(string));
     List<Token> tokens = tokenize(string);
-    tokens.forEach((t)->{System.out.println("Token "+(t.isTokenized()?t.getPattern().getId():"STRING")+"=\""+t.getString()+"\"");});
+    tokens.forEach((t)->{System.out.println("Token "+(t instanceof NamedToken?((NamedToken)t).getName():"STRING")+"=\""+t.getString()+"\"");});
     return null;
   }
   
@@ -56,12 +54,12 @@ public class Tokenizer<T> {
       Matcher m = p.matcher(string);
       if (m.find()) {
         if (m.start() > 0) tokens.addAll(tokenize(string.substring(0, m.start())));
-        tokens.add(new Token(p,string.substring(m.start(), m.end())));
+        tokens.add(new MatchedPattern(p,string.substring(m.start(), m.end())));
         if (m.end() < string.length()) tokens.addAll(tokenize(string.substring(m.end())));
         return tokens;
       }
     }
-    tokens.add(new Token(string));
+    tokens.add(new UnmatchedLiteral(string));
     return tokens;
   }
   

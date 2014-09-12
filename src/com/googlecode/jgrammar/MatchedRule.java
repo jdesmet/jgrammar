@@ -10,17 +10,20 @@ package com.googlecode.jgrammar;
  *
  * @author jdesmet
  */
-public class RuleContext<T> {
-  public T getReference(String name) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class MatchedRule extends NamedToken {
+  final private Rule rule;
+  
+  MatchedRule(Rule rule) {
+    this.rule = rule;
   }
 
-  public String getMatch(String name) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  @Override
+  String getName() {
+    return rule.getName();
   }
 
+  @Override
   public String getString() {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
-
 }

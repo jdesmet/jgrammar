@@ -13,11 +13,11 @@ import java.util.regex.Matcher;
  * @author jdesmet
  */
 public class Pattern {
-  private final String id;
+  private final String name;
   private final java.util.regex.Pattern pattern;
 
-  public Pattern(String id, String pattern) {
-    this.id = id;
+  public Pattern(String name, String pattern) {
+    this.name = name;
     this.pattern = java.util.regex.Pattern.compile(pattern);
   }
 
@@ -25,8 +25,8 @@ public class Pattern {
     return pattern.matcher(string);
   }
 
-  public String getId() {
-    return this.id;
+  public String getName() {
+    return this.name;
   }
   
 }
