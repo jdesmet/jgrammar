@@ -12,25 +12,15 @@ import java.util.regex.Pattern;
  *
  * @author jdesmet
  */
-public class MatchedPattern extends NamedToken {
+class PatternMatcher<T,U extends T> extends Matcher<T,U> {
   final private Pattern pattern;
-  final private String string;
-  final private String name;
   
-  MatchedPattern(String name,Pattern pattern,String string) {
-    this.string = string;
+  PatternMatcher(Pattern pattern) {
     this.pattern = pattern;
-    this.name = name;
-  }
-
-  @Override
-  String getName() {
-    return this.name;
-  }
-
-  @Override
-  public String getString() {
-    return this.string;
   }
   
+  PatternMatcher(String pattern) {
+    this.pattern = Pattern.compile(pattern);
+  }
+
 }

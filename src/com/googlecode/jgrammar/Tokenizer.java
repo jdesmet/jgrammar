@@ -7,20 +7,24 @@
 package com.googlecode.jgrammar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author jdesmet
  */
 public class Tokenizer<T> {
-  private final List<Pattern> patterns;
+  private final Map<String,Pattern> patterns;
   private final List<Pattern> ignores;
   private final List<Rule<T,? extends T>> rules;
 
   public Tokenizer() {
-    patterns = new ArrayList<>();
+    patterns = new HashMap<>();
     rules = new ArrayList<>();
     ignores = new ArrayList<>();
   }
@@ -34,8 +38,8 @@ public class Tokenizer<T> {
     return this;
   }
 
-  public Tokenizer add(Pattern pattern) {
-    patterns.add(pattern);
+  public Tokenizer add(String name,Pattern pattern) {
+    patterns.put(name,pattern);
     return this;
   }
 
@@ -44,17 +48,23 @@ public class Tokenizer<T> {
     //tokens.add(new Token(string));
     List<Token> tokens = tokenize(string);
     tokens.forEach((t)->{System.out.println("Token "+(t instanceof NamedToken?((NamedToken)t).getName():"STRING")+"=\""+t.getString()+"\"");});
+    List<Token> newTokens = new ArrayList<>();
+    for (Rule r:rules) {
+      
+    }
     return null;
   }
   
   List<Token> tokenize(String string) {
     // Highly inefficient recursive tokenizer
     List<Token> tokens = new ArrayList<>();
-    for (Pattern p:patterns) {
+    for (Entry<String,Pattern> s:patterns.entrySet()) {
+      Pattern p = s.getValue();
+      String n = s.getKey();
       Matcher m = p.matcher(string);
       if (m.find()) {
         if (m.start() > 0) tokens.addAll(tokenize(string.substring(0, m.start())));
-        tokens.add(new MatchedPattern(p,string.substring(m.start(), m.end())));
+        tokens.add(new MatchedPattern(n,p,string.substring(m.start(), m.end())));
         if (m.end() < string.length()) tokens.addAll(tokenize(string.substring(m.end())));
         return tokens;
       }

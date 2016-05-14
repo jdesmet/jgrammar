@@ -22,9 +22,11 @@ public class Rule<T,U extends T> {
   private Function<RuleContext<T>,U> constructor = null;
   private List<BiConsumer<U,RuleContext<T>>> fillers = Collections.emptyList();
   final private String name;
+  final private Matcher<T,U> [] matchers;
   
-  public Rule(String name,String pattern) { 
+  public Rule(String name,Matcher<T,U>... matchers) { 
     this.name = name;
+    this.matchers = matchers;
   }
   
   public Rule<T,U> create(Function<RuleContext<T>,U> f) {
